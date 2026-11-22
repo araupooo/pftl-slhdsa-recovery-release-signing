@@ -1,0 +1,150 @@
+bench_slhdsa: SLH-DSA size and timing check (all twelve pure sets)
+liboqs version: 0.16.0
+iterations: 100 for 128s/128f sets, 5 for 192/256 sets (fixed 64-byte message)
+expected sizes: FIPS 205 Table 2 (sk = 4n, pk = 2n, signature per set)
+[SLH-DSA-SHA2-128s] algorithm: SLH_DSA_PURE_SHA2_128S (FIPS 205 category 1, SLH_DSA_PURE_SHA2_128S)
+[SLH-DSA-SHA2-128s] length_secret_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHA2-128s] length_public_key=32 (FIPS 205 Table 2: 32) OK
+[SLH-DSA-SHA2-128s] length_signature=7856 (FIPS 205 Table 2: 7856) OK
+SLH-DSA-SHA2-128s keypair    n=100   mean=    97714.06 us  median=    96432.36 us  min=    93856.74 us  max=   128989.98 us  rate=    10.23 ops/s
+CSV: SLH-DSA-SHA2-128s keypair,n=100,mean_us=97714.06,min_us=93856.74,max_us=128989.98,rate_ops_s=10.23
+SLH-DSA-SHA2-128s sign       n=100   mean=   758316.58 us  median=   744988.93 us  min=   720089.13 us  max=   912932.84 us  rate=     1.32 ops/s
+CSV: SLH-DSA-SHA2-128s sign,n=100,mean_us=758316.58,min_us=720089.13,max_us=912932.84,rate_ops_s=1.32
+SLH-DSA-SHA2-128s verify     n=100   mean=      764.17 us  median=      737.74 us  min=      662.27 us  max=     1174.00 us  rate=  1308.62 ops/s
+CSV: SLH-DSA-SHA2-128s verify,n=100,mean_us=764.17,min_us=662.27,max_us=1174.00,rate_ops_s=1308.62
+[SLH-DSA-SHA2-128s] verify failures: 0 / 100
+[SLH-DSA-SHA2-128s] sizes+roundtrip: OK
+[SLH-DSA-SHA2-128f] algorithm: SLH_DSA_PURE_SHA2_128F (FIPS 205 category 1, SLH_DSA_PURE_SHA2_128F)
+[SLH-DSA-SHA2-128f] length_secret_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHA2-128f] length_public_key=32 (FIPS 205 Table 2: 32) OK
+[SLH-DSA-SHA2-128f] length_signature=17088 (FIPS 205 Table 2: 17088) OK
+SLH-DSA-SHA2-128f keypair    n=100   mean=     1523.82 us  median=     1488.52 us  min=     1463.51 us  max=     2074.25 us  rate=   656.25 ops/s
+CSV: SLH-DSA-SHA2-128f keypair,n=100,mean_us=1523.82,min_us=1463.51,max_us=2074.25,rate_ops_s=656.25
+SLH-DSA-SHA2-128f sign       n=100   mean=    35536.02 us  median=    34867.44 us  min=    34561.64 us  max=    46215.48 us  rate=    28.14 ops/s
+CSV: SLH-DSA-SHA2-128f sign,n=100,mean_us=35536.02,min_us=34561.64,max_us=46215.48,rate_ops_s=28.14
+SLH-DSA-SHA2-128f verify     n=100   mean=     2151.88 us  median=     2108.20 us  min=     1989.36 us  max=     4070.35 us  rate=   464.71 ops/s
+CSV: SLH-DSA-SHA2-128f verify,n=100,mean_us=2151.88,min_us=1989.36,max_us=4070.35,rate_ops_s=464.71
+[SLH-DSA-SHA2-128f] verify failures: 0 / 100
+[SLH-DSA-SHA2-128f] sizes+roundtrip: OK
+[SLH-DSA-SHA2-192s] algorithm: SLH_DSA_PURE_SHA2_192S (FIPS 205 category 3, SLH_DSA_PURE_SHA2_192S)
+[SLH-DSA-SHA2-192s] length_secret_key=96 (FIPS 205 Table 2: 96) OK
+[SLH-DSA-SHA2-192s] length_public_key=48 (FIPS 205 Table 2: 48) OK
+[SLH-DSA-SHA2-192s] length_signature=16224 (FIPS 205 Table 2: 16224) OK
+SLH-DSA-SHA2-192s keypair    n=5     mean=   139436.90 us  median=   139437.68 us  min=   138205.10 us  max=   140477.12 us  rate=     7.17 ops/s
+CSV: SLH-DSA-SHA2-192s keypair,n=5,mean_us=139436.90,min_us=138205.10,max_us=140477.12,rate_ops_s=7.17
+SLH-DSA-SHA2-192s sign       n=5     mean=  1321632.89 us  median=  1322897.28 us  min=  1297984.28 us  max=  1344807.49 us  rate=     0.76 ops/s
+CSV: SLH-DSA-SHA2-192s sign,n=5,mean_us=1321632.89,min_us=1297984.28,max_us=1344807.49,rate_ops_s=0.76
+SLH-DSA-SHA2-192s verify     n=5     mean=     1119.49 us  median=     1105.57 us  min=     1072.64 us  max=     1198.19 us  rate=   893.27 ops/s
+CSV: SLH-DSA-SHA2-192s verify,n=5,mean_us=1119.49,min_us=1072.64,max_us=1198.19,rate_ops_s=893.27
+[SLH-DSA-SHA2-192s] verify failures: 0 / 5
+[SLH-DSA-SHA2-192s] sizes+roundtrip: OK
+[SLH-DSA-SHA2-192f] algorithm: SLH_DSA_PURE_SHA2_192F (FIPS 205 category 3, SLH_DSA_PURE_SHA2_192F)
+[SLH-DSA-SHA2-192f] length_secret_key=96 (FIPS 205 Table 2: 96) OK
+[SLH-DSA-SHA2-192f] length_public_key=48 (FIPS 205 Table 2: 48) OK
+[SLH-DSA-SHA2-192f] length_signature=35664 (FIPS 205 Table 2: 35664) OK
+SLH-DSA-SHA2-192f keypair    n=5     mean=     2247.11 us  median=     2201.31 us  min=     2166.40 us  max=     2460.47 us  rate=   445.02 ops/s
+CSV: SLH-DSA-SHA2-192f keypair,n=5,mean_us=2247.11,min_us=2166.40,max_us=2460.47,rate_ops_s=445.02
+SLH-DSA-SHA2-192f sign       n=5     mean=    59422.71 us  median=    58906.75 us  min=    56761.57 us  max=    62040.51 us  rate=    16.83 ops/s
+CSV: SLH-DSA-SHA2-192f sign,n=5,mean_us=59422.71,min_us=56761.57,max_us=62040.51,rate_ops_s=16.83
+SLH-DSA-SHA2-192f verify     n=5     mean=     3100.92 us  median=     3112.66 us  min=     2986.57 us  max=     3207.54 us  rate=   322.48 ops/s
+CSV: SLH-DSA-SHA2-192f verify,n=5,mean_us=3100.92,min_us=2986.57,max_us=3207.54,rate_ops_s=322.48
+[SLH-DSA-SHA2-192f] verify failures: 0 / 5
+[SLH-DSA-SHA2-192f] sizes+roundtrip: OK
+[SLH-DSA-SHA2-256s] algorithm: SLH_DSA_PURE_SHA2_256S (FIPS 205 category 5, SLH_DSA_PURE_SHA2_256S)
+[SLH-DSA-SHA2-256s] length_secret_key=128 (FIPS 205 Table 2: 128) OK
+[SLH-DSA-SHA2-256s] length_public_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHA2-256s] length_signature=29792 (FIPS 205 Table 2: 29792) OK
+SLH-DSA-SHA2-256s keypair    n=5     mean=    92170.40 us  median=    92246.53 us  min=    91279.93 us  max=    93512.85 us  rate=    10.85 ops/s
+CSV: SLH-DSA-SHA2-256s keypair,n=5,mean_us=92170.40,min_us=91279.93,max_us=93512.85,rate_ops_s=10.85
+SLH-DSA-SHA2-256s sign       n=5     mean=  1150137.10 us  median=  1144272.08 us  min=  1140291.67 us  max=  1166634.59 us  rate=     0.87 ops/s
+CSV: SLH-DSA-SHA2-256s sign,n=5,mean_us=1150137.10,min_us=1140291.67,max_us=1166634.59,rate_ops_s=0.87
+SLH-DSA-SHA2-256s verify     n=5     mean=     1572.21 us  median=     1536.74 us  min=     1492.59 us  max=     1747.99 us  rate=   636.05 ops/s
+CSV: SLH-DSA-SHA2-256s verify,n=5,mean_us=1572.21,min_us=1492.59,max_us=1747.99,rate_ops_s=636.05
+[SLH-DSA-SHA2-256s] verify failures: 0 / 5
+[SLH-DSA-SHA2-256s] sizes+roundtrip: OK
+[SLH-DSA-SHA2-256f] algorithm: SLH_DSA_PURE_SHA2_256F (FIPS 205 category 5, SLH_DSA_PURE_SHA2_256F)
+[SLH-DSA-SHA2-256f] length_secret_key=128 (FIPS 205 Table 2: 128) OK
+[SLH-DSA-SHA2-256f] length_public_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHA2-256f] length_signature=49856 (FIPS 205 Table 2: 49856) OK
+SLH-DSA-SHA2-256f keypair    n=5     mean=     5859.99 us  median=     5850.03 us  min=     5614.47 us  max=     6264.59 us  rate=   170.65 ops/s
+CSV: SLH-DSA-SHA2-256f keypair,n=5,mean_us=5859.99,min_us=5614.47,max_us=6264.59,rate_ops_s=170.65
+SLH-DSA-SHA2-256f sign       n=5     mean=   118764.31 us  median=   118975.40 us  min=   116373.63 us  max=   122835.93 us  rate=     8.42 ops/s
+CSV: SLH-DSA-SHA2-256f sign,n=5,mean_us=118764.31,min_us=116373.63,max_us=122835.93,rate_ops_s=8.42
+SLH-DSA-SHA2-256f verify     n=5     mean=     3242.27 us  median=     3105.07 us  min=     3072.37 us  max=     3605.93 us  rate=   308.43 ops/s
+CSV: SLH-DSA-SHA2-256f verify,n=5,mean_us=3242.27,min_us=3072.37,max_us=3605.93,rate_ops_s=308.43
+[SLH-DSA-SHA2-256f] verify failures: 0 / 5
+[SLH-DSA-SHA2-256f] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-128s] algorithm: SLH_DSA_PURE_SHAKE_128S (FIPS 205 category 1, SLH_DSA_PURE_SHAKE_128S)
+[SLH-DSA-SHAKE-128s] length_secret_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHAKE-128s] length_public_key=32 (FIPS 205 Table 2: 32) OK
+[SLH-DSA-SHAKE-128s] length_signature=7856 (FIPS 205 Table 2: 7856) OK
+SLH-DSA-SHAKE-128s keypair   n=100   mean=   149777.15 us  median=   147393.39 us  min=   145047.34 us  max=   204902.76 us  rate=     6.68 ops/s
+CSV: SLH-DSA-SHAKE-128s keypair,n=100,mean_us=149777.15,min_us=145047.34,max_us=204902.76,rate_ops_s=6.68
+SLH-DSA-SHAKE-128s sign      n=100   mean=  1143836.39 us  median=  1138946.47 us  min=  1111465.99 us  max=  1292512.35 us  rate=     0.87 ops/s
+CSV: SLH-DSA-SHAKE-128s sign,n=100,mean_us=1143836.39,min_us=1111465.99,max_us=1292512.35,rate_ops_s=0.87
+SLH-DSA-SHAKE-128s verify    n=100   mean=     1128.40 us  median=     1115.72 us  min=     1004.84 us  max=     1525.16 us  rate=   886.21 ops/s
+CSV: SLH-DSA-SHAKE-128s verify,n=100,mean_us=1128.40,min_us=1004.84,max_us=1525.16,rate_ops_s=886.21
+[SLH-DSA-SHAKE-128s] verify failures: 0 / 100
+[SLH-DSA-SHAKE-128s] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-128f] algorithm: SLH_DSA_PURE_SHAKE_128F (FIPS 205 category 1, SLH_DSA_PURE_SHAKE_128F)
+[SLH-DSA-SHAKE-128f] length_secret_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHAKE-128f] length_public_key=32 (FIPS 205 Table 2: 32) OK
+[SLH-DSA-SHAKE-128f] length_signature=17088 (FIPS 205 Table 2: 17088) OK
+SLH-DSA-SHAKE-128f keypair   n=100   mean=     2371.30 us  median=     2304.26 us  min=     2264.51 us  max=     3383.94 us  rate=   421.71 ops/s
+CSV: SLH-DSA-SHAKE-128f keypair,n=100,mean_us=2371.30,min_us=2264.51,max_us=3383.94,rate_ops_s=421.71
+SLH-DSA-SHAKE-128f sign      n=100   mean=    54630.53 us  median=    54220.82 us  min=    53360.26 us  max=    60120.64 us  rate=    18.30 ops/s
+CSV: SLH-DSA-SHAKE-128f sign,n=100,mean_us=54630.53,min_us=53360.26,max_us=60120.64,rate_ops_s=18.30
+SLH-DSA-SHAKE-128f verify    n=100   mean=     3275.07 us  median=     3212.77 us  min=     3053.40 us  max=     5092.15 us  rate=   305.34 ops/s
+CSV: SLH-DSA-SHAKE-128f verify,n=100,mean_us=3275.07,min_us=3053.40,max_us=5092.15,rate_ops_s=305.34
+[SLH-DSA-SHAKE-128f] verify failures: 0 / 100
+[SLH-DSA-SHAKE-128f] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-192s] algorithm: SLH_DSA_PURE_SHAKE_192S (FIPS 205 category 3, SLH_DSA_PURE_SHAKE_192S)
+[SLH-DSA-SHAKE-192s] length_secret_key=96 (FIPS 205 Table 2: 96) OK
+[SLH-DSA-SHAKE-192s] length_public_key=48 (FIPS 205 Table 2: 48) OK
+[SLH-DSA-SHAKE-192s] length_signature=16224 (FIPS 205 Table 2: 16224) OK
+SLH-DSA-SHAKE-192s keypair   n=5     mean=   215624.29 us  median=   215011.38 us  min=   214955.80 us  max=   218111.97 us  rate=     4.64 ops/s
+CSV: SLH-DSA-SHAKE-192s keypair,n=5,mean_us=215624.29,min_us=214955.80,max_us=218111.97,rate_ops_s=4.64
+SLH-DSA-SHAKE-192s sign      n=5     mean=  2019402.78 us  median=  2014908.09 us  min=  2001422.84 us  max=  2047234.69 us  rate=     0.50 ops/s
+CSV: SLH-DSA-SHAKE-192s sign,n=5,mean_us=2019402.78,min_us=2001422.84,max_us=2047234.69,rate_ops_s=0.50
+SLH-DSA-SHAKE-192s verify    n=5     mean=     1641.35 us  median=     1650.29 us  min=     1557.12 us  max=     1689.72 us  rate=   609.26 ops/s
+CSV: SLH-DSA-SHAKE-192s verify,n=5,mean_us=1641.35,min_us=1557.12,max_us=1689.72,rate_ops_s=609.26
+[SLH-DSA-SHAKE-192s] verify failures: 0 / 5
+[SLH-DSA-SHAKE-192s] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-192f] algorithm: SLH_DSA_PURE_SHAKE_192F (FIPS 205 category 3, SLH_DSA_PURE_SHAKE_192F)
+[SLH-DSA-SHAKE-192f] length_secret_key=96 (FIPS 205 Table 2: 96) OK
+[SLH-DSA-SHAKE-192f] length_public_key=48 (FIPS 205 Table 2: 48) OK
+[SLH-DSA-SHAKE-192f] length_signature=35664 (FIPS 205 Table 2: 35664) OK
+SLH-DSA-SHAKE-192f keypair   n=5     mean=     3446.43 us  median=     3386.61 us  min=     3363.84 us  max=     3682.46 us  rate=   290.16 ops/s
+CSV: SLH-DSA-SHAKE-192f keypair,n=5,mean_us=3446.43,min_us=3363.84,max_us=3682.46,rate_ops_s=290.16
+SLH-DSA-SHAKE-192f sign      n=5     mean=    91700.54 us  median=    91745.30 us  min=    90372.45 us  max=    93847.71 us  rate=    10.91 ops/s
+CSV: SLH-DSA-SHAKE-192f sign,n=5,mean_us=91700.54,min_us=90372.45,max_us=93847.71,rate_ops_s=10.91
+SLH-DSA-SHAKE-192f verify    n=5     mean=     4775.33 us  median=     4666.64 us  min=     4612.46 us  max=     5130.98 us  rate=   209.41 ops/s
+CSV: SLH-DSA-SHAKE-192f verify,n=5,mean_us=4775.33,min_us=4612.46,max_us=5130.98,rate_ops_s=209.41
+[SLH-DSA-SHAKE-192f] verify failures: 0 / 5
+[SLH-DSA-SHAKE-192f] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-256s] algorithm: SLH_DSA_PURE_SHAKE_256S (FIPS 205 category 5, SLH_DSA_PURE_SHAKE_256S)
+[SLH-DSA-SHAKE-256s] length_secret_key=128 (FIPS 205 Table 2: 128) OK
+[SLH-DSA-SHAKE-256s] length_public_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHAKE-256s] length_signature=29792 (FIPS 205 Table 2: 29792) OK
+SLH-DSA-SHAKE-256s keypair   n=5     mean=   143747.81 us  median=   142795.44 us  min=   140856.40 us  max=   148201.11 us  rate=     6.96 ops/s
+CSV: SLH-DSA-SHAKE-256s keypair,n=5,mean_us=143747.81,min_us=140856.40,max_us=148201.11,rate_ops_s=6.96
+SLH-DSA-SHAKE-256s sign      n=5     mean=  1787552.06 us  median=  1795259.93 us  min=  1760439.51 us  max=  1801388.67 us  rate=     0.56 ops/s
+CSV: SLH-DSA-SHAKE-256s sign,n=5,mean_us=1787552.06,min_us=1760439.51,max_us=1801388.67,rate_ops_s=0.56
+SLH-DSA-SHAKE-256s verify    n=5     mean=     2708.11 us  median=     2393.78 us  min=     2309.27 us  max=     3801.22 us  rate=   369.26 ops/s
+CSV: SLH-DSA-SHAKE-256s verify,n=5,mean_us=2708.11,min_us=2309.27,max_us=3801.22,rate_ops_s=369.26
+[SLH-DSA-SHAKE-256s] verify failures: 0 / 5
+[SLH-DSA-SHAKE-256s] sizes+roundtrip: OK
+[SLH-DSA-SHAKE-256f] algorithm: SLH_DSA_PURE_SHAKE_256F (FIPS 205 category 5, SLH_DSA_PURE_SHAKE_256F)
+[SLH-DSA-SHAKE-256f] length_secret_key=128 (FIPS 205 Table 2: 128) OK
+[SLH-DSA-SHAKE-256f] length_public_key=64 (FIPS 205 Table 2: 64) OK
+[SLH-DSA-SHAKE-256f] length_signature=49856 (FIPS 205 Table 2: 49856) OK
+SLH-DSA-SHAKE-256f keypair   n=5     mean=     9525.99 us  median=     9121.53 us  min=     8803.39 us  max=    11077.61 us  rate=   104.98 ops/s
+CSV: SLH-DSA-SHAKE-256f keypair,n=5,mean_us=9525.99,min_us=8803.39,max_us=11077.61,rate_ops_s=104.98
+SLH-DSA-SHAKE-256f sign      n=5     mean=   193176.94 us  median=   193399.23 us  min=   189536.63 us  max=   196253.65 us  rate=     5.18 ops/s
+CSV: SLH-DSA-SHAKE-256f sign,n=5,mean_us=193176.94,min_us=189536.63,max_us=196253.65,rate_ops_s=5.18
+SLH-DSA-SHAKE-256f verify    n=5     mean=     4834.59 us  median=     4845.18 us  min=     4676.05 us  max=     5026.81 us  rate=   206.84 ops/s
+CSV: SLH-DSA-SHAKE-256f verify,n=5,mean_us=4834.59,min_us=4676.05,max_us=5026.81,rate_ops_s=206.84
+[SLH-DSA-SHAKE-256f] verify failures: 0 / 5
+[SLH-DSA-SHAKE-256f] sizes+roundtrip: OK
+peak RSS: 6028 KiB
+bench_slhdsa: DONE

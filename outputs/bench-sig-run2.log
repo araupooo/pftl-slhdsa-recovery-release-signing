@@ -1,0 +1,55 @@
+bench_sig: ML-DSA + Ed25519 size and timing check
+liboqs version: 0.16.0
+OpenSSL version: OpenSSL 3.0.13 30 Jan 2024
+iterations: 100 (fixed 64-byte message)
+expected sizes: FIPS 204 Table 2 (ML-DSA), RFC 8032 §1 (Ed25519)
+[ML-DSA-44] algorithm: ML-DSA-44 (FIPS 204 category 2)
+[ML-DSA-44] length_secret_key=2560 (FIPS 204 Table 2: 2560) OK
+[ML-DSA-44] length_public_key=1312 (FIPS 204 Table 2: 1312) OK
+[ML-DSA-44] length_signature=2420 (FIPS 204 Table 2: 2420) OK
+ML-DSA-44 keypair        n=100   mean=    60.42 us  min=    31.97 us  max=  2304.40 us  rate= 16549.83 ops/s
+CSV: ML-DSA-44 keypair,n=100,mean_us=60.42,min_us=31.97,max_us=2304.40,rate_ops_s=16549.83
+ML-DSA-44 sign           n=100   mean=   120.87 us  min=    47.14 us  max=   482.84 us  rate=  8273.59 ops/s
+CSV: ML-DSA-44 sign,n=100,mean_us=120.87,min_us=47.14,max_us=482.84,rate_ops_s=8273.59
+ML-DSA-44 verify         n=100   mean=    37.24 us  min=    34.79 us  max=    52.80 us  rate= 26849.88 ops/s
+CSV: ML-DSA-44 verify,n=100,mean_us=37.24,min_us=34.79,max_us=52.80,rate_ops_s=26849.88
+[ML-DSA-44] verify failures: 0 / 100
+[ML-DSA-44] sizes+roundtrip: OK
+[ML-DSA-65] algorithm: ML-DSA-65 (FIPS 204 category 3)
+[ML-DSA-65] length_secret_key=4032 (FIPS 204 Table 2: 4032) OK
+[ML-DSA-65] length_public_key=1952 (FIPS 204 Table 2: 1952) OK
+[ML-DSA-65] length_signature=3309 (FIPS 204 Table 2: 3309) OK
+ML-DSA-65 keypair        n=100   mean=    62.48 us  min=    56.55 us  max=   115.55 us  rate= 16005.31 ops/s
+CSV: ML-DSA-65 keypair,n=100,mean_us=62.48,min_us=56.55,max_us=115.55,rate_ops_s=16005.31
+ML-DSA-65 sign           n=100   mean=   194.76 us  min=    71.48 us  max=   982.14 us  rate=  5134.53 ops/s
+CSV: ML-DSA-65 sign,n=100,mean_us=194.76,min_us=71.48,max_us=982.14,rate_ops_s=5134.53
+ML-DSA-65 verify         n=100   mean=    64.03 us  min=    58.05 us  max=   151.81 us  rate= 15618.25 ops/s
+CSV: ML-DSA-65 verify,n=100,mean_us=64.03,min_us=58.05,max_us=151.81,rate_ops_s=15618.25
+[ML-DSA-65] verify failures: 0 / 100
+[ML-DSA-65] sizes+roundtrip: OK
+[ML-DSA-87] algorithm: ML-DSA-87 (FIPS 204 category 5)
+[ML-DSA-87] length_secret_key=4896 (FIPS 204 Table 2: 4896) OK
+[ML-DSA-87] length_public_key=2592 (FIPS 204 Table 2: 2592) OK
+[ML-DSA-87] length_signature=4627 (FIPS 204 Table 2: 4627) OK
+ML-DSA-87 keypair        n=100   mean=    89.09 us  min=    80.64 us  max=   272.26 us  rate= 11225.09 ops/s
+CSV: ML-DSA-87 keypair,n=100,mean_us=89.09,min_us=80.64,max_us=272.26,rate_ops_s=11225.09
+ML-DSA-87 sign           n=100   mean=   183.58 us  min=   100.63 us  max=   585.80 us  rate=  5447.08 ops/s
+CSV: ML-DSA-87 sign,n=100,mean_us=183.58,min_us=100.63,max_us=585.80,rate_ops_s=5447.08
+ML-DSA-87 verify         n=100   mean=    89.67 us  min=    81.77 us  max=   282.54 us  rate= 11151.51 ops/s
+CSV: ML-DSA-87 verify,n=100,mean_us=89.67,min_us=81.77,max_us=282.54,rate_ops_s=11151.51
+[ML-DSA-87] verify failures: 0 / 100
+[ML-DSA-87] sizes+roundtrip: OK
+[Ed25519] algorithm: Ed25519 (RFC 8032, OpenSSL EVP)
+[Ed25519] public_key=32 bytes (RFC 8032: 32) OK
+[Ed25519] private_key=32 bytes (raw seed, RFC 8032 §3.2: 32) OK
+[Ed25519] signature=64 bytes (RFC 8032: 64) OK
+Ed25519 keypair          n=100   mean=    59.44 us  min=    53.79 us  max=   116.30 us  rate= 16825.08 ops/s
+CSV: Ed25519 keypair,n=100,mean_us=59.44,min_us=53.79,max_us=116.30,rate_ops_s=16825.08
+Ed25519 sign             n=100   mean=    56.94 us  min=    52.31 us  max=   117.28 us  rate= 17561.18 ops/s
+CSV: Ed25519 sign,n=100,mean_us=56.94,min_us=52.31,max_us=117.28,rate_ops_s=17561.18
+Ed25519 verify           n=100   mean=   149.58 us  min=   137.05 us  max=   226.39 us  rate=  6685.46 ops/s
+CSV: Ed25519 verify,n=100,mean_us=149.58,min_us=137.05,max_us=226.39,rate_ops_s=6685.46
+[Ed25519] verify failures: 0 / 100
+[Ed25519] sizes+roundtrip: OK
+peak RSS: 6388 KiB
+bench_sig: DONE

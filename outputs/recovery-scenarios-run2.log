@@ -1,0 +1,283 @@
+run_recovery_scenarios: label=run2 release=./pack/../work/release recovery=./pack/../work/recovery work=./pack/../work/recovery-scenarios-run2 out=./pack/outputs
+run_recovery_scenarios: check order in verify: digest -> version -> revocation -> lengths -> signature(s)
+run_recovery_scenarios: compromise is EMULATED by revocation (no key material was leaked); see docs/methodology.md
+artifacts: v1=./pack/../work/recovery-scenarios-run2/firmware-v1.bin v2=./pack/../work/recovery-scenarios-run2/firmware-v2.bin v3=./pack/../work/recovery-scenarios-run2/firmware-v3.bin v4=./pack/../work/recovery-scenarios-run2/firmware-v4.bin (64 KiB deterministic patterns)
+$ ./pack/../work/release genkey Ed25519 ed25519-rel-a ./pack/../work/recovery-scenarios-run2/keys
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=Ed25519 key_id=ed25519-rel-a pk_len=32 sk_len=32 pk_sha256=9be22ee6f8bd771e...
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/ed25519-rel-a.pk (32 bytes) and ./pack/../work/recovery-scenarios-run2/keys/ed25519-rel-a.sk (32 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/release genkey ML-DSA-65 mldsa65-rel-a ./pack/../work/recovery-scenarios-run2/keys
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=ML-DSA-65 key_id=mldsa65-rel-a pk_len=1952 sk_len=4032 pk_sha256=a526a7732b53c18f...
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/mldsa65-rel-a.pk (1952 bytes) and ./pack/../work/recovery-scenarios-run2/keys/mldsa65-rel-a.sk (4032 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/recovery genkey SLH-DSA-SHA2-128s slhdsa128s-fb-a ./pack/../work/recovery-scenarios-run2/keys
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-a pk_len=32 sk_len=64 sig_len=7856 pk_sha256=d1ba969e025ab901406508437b2ccad5a7b3ff3eb9a6f962f6e04773c3893f66
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-a.pk (32 bytes) and ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-a.sk (64 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/recovery genkey SLH-DSA-SHA2-128s slhdsa128s-fb-b ./pack/../work/recovery-scenarios-run2/keys
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-b pk_len=32 sk_len=64 sig_len=7856 pk_sha256=e9a0353741ec618f435f568ad99c91d76c2c963707af6ae31a48803f7f0aa5e3
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-b.pk (32 bytes) and ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-b.sk (64 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/recovery genkey SLH-DSA-SHA2-128s slhdsa128s-fb-c ./pack/../work/recovery-scenarios-run2/keys
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-c pk_len=32 sk_len=64 sig_len=7856 pk_sha256=94083ad323c5daa9462fc999aeef5d69dc7efefe653a485c15e0651470a58576
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-c.pk (32 bytes) and ./pack/../work/recovery-scenarios-run2/keys/slhdsa128s-fb-c.sk (64 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/release sign ./pack/../work/recovery-scenarios-run2/firmware-v1.bin 1 ed25519-rel-a ./pack/../work/recovery-scenarios-run2/keys ML-DSA-65 mldsa65-rel-a ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v1.json
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v1.bin sha256=0639894dc09841799245c64d7cb3c4c2241ce6ed4927b026c8b2426d759a0a9c size=65536 version=1
+sign: classical Ed25519 key_id=ed25519-rel-a sig_len=64
+sign: pq ML-DSA-65 key_id=mldsa65-rel-a sig_len=3309
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v1.json
+[exit 0]
+$ ./pack/../work/release sign ./pack/../work/recovery-scenarios-run2/firmware-v2.bin 2 ed25519-rel-a ./pack/../work/recovery-scenarios-run2/keys ML-DSA-65 mldsa65-rel-a ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v2.json
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v2.bin sha256=4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb size=65536 version=2
+sign: classical Ed25519 key_id=ed25519-rel-a sig_len=64
+sign: pq ML-DSA-65 key_id=mldsa65-rel-a sig_len=3309
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v2.json
+[exit 0]
+$ ./pack/../work/release verify ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v1.json ./pack/../work/recovery-scenarios-run2/firmware-v1.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-hybrid-v1.json artifact=firmware-v1.bin version=1 classical=Ed25519 key=ed25519-rel-a pq=ML-DSA-65 key=mldsa65-rel-a
+verify: artifact sha256=0639894dc09841799245c64d7cb3c4c2241ce6ed4927b026c8b2426d759a0a9c (manifest 0639894dc09841799245c64d7cb3c4c2241ce6ed4927b026c8b2426d759a0a9c) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=0 manifest version=1
+verify: monotonic version: OK
+verify: revocation check: OK (neither key revoked)
+verify: lengths classical pk=32 (exp 32) sig=64 (exp 64); pq pk=1952 (exp 1952) sig=3309 (exp 3309)
+verify: length checks: OK
+verify: classical Ed25519 signature: VALID
+verify: pq ML-DSA-65 signature: VALID
+verify: installed version updated to 1
+VERDICT: ACCEPT
+REASON: artifact digest, monotonic version, revocation, lengths, and both signatures valid
+[exit 0]
+SCENARIO R1 clean-hybrid-install-v1 EXPECTED=ACCEPT OBSERVED=ACCEPT REASON=artifact digest, monotonic version, revocation, lengths, and both signatures valid RESULT=PASS
+R2: EMULATED compromise — mldsa65-rel-a added to the revocation list (no key material leaked)
+$ ./pack/../work/release verify ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v2.json ./pack/../work/recovery-scenarios-run2/firmware-v2.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-hybrid-v2.json artifact=firmware-v2.bin version=2 classical=Ed25519 key=ed25519-rel-a pq=ML-DSA-65 key=mldsa65-rel-a
+verify: artifact sha256=4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb (manifest 4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=1 manifest version=2
+verify: monotonic version: OK
+VERDICT: REJECT
+REASON: compromised key: pq key mldsa65-rel-a is revoked
+[exit 1]
+SCENARIO R2 revoked-mldsa-key-hybrid-v2 EXPECTED=REJECT OBSERVED=REJECT REASON=compromised key: pq key mldsa65-rel-a is revoked RESULT=PASS
+$ ./pack/../work/recovery sign ./pack/../work/recovery-scenarios-run2/firmware-v2.bin 2 SLH-DSA-SHA2-128s slhdsa128s-fb-a ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v2.bin sha256=4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb size=65536 version=2
+sign: fallback SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-a sig_len=7856
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json
+[exit 0]
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json ./pack/../work/recovery-scenarios-run2/firmware-v2.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json artifact=firmware-v2.bin version=2 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-a
+verify: artifact sha256=4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb (manifest 4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=1 manifest version=2
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: VALID
+verify: installed version updated to 2
+VERDICT: ACCEPT
+REASON: artifact digest, monotonic version, revocation, lengths, and fallback signature valid
+[exit 0]
+SCENARIO R3 recovery-install-v2-fallback-a EXPECTED=ACCEPT OBSERVED=ACCEPT REASON=artifact digest, monotonic version, revocation, lengths, and fallback signature valid RESULT=PASS
+$ ./pack/../work/recovery sign ./pack/../work/recovery-scenarios-run2/firmware-v3.bin 3 SLH-DSA-SHA2-128s slhdsa128s-fb-a ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3.json
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v3.bin sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 size=65536 version=3
+sign: fallback SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-a sig_len=7856
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3.json
+[exit 0]
+R4: fallback key slhdsa128s-fb-a revoked
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-a
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=3
+verify: monotonic version: OK
+VERDICT: REJECT
+REASON: compromised key: fallback key slhdsa128s-fb-a is revoked
+[exit 1]
+SCENARIO R4 revoked-fallback-key-v3 EXPECTED=REJECT OBSERVED=REJECT REASON=compromised key: fallback key slhdsa128s-fb-a is revoked RESULT=PASS
+$ ./pack/../work/recovery sign ./pack/../work/recovery-scenarios-run2/firmware-v3.bin 3 SLH-DSA-SHA2-128s slhdsa128s-fb-b ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v3.bin sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 size=65536 version=3
+sign: fallback SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-b sig_len=7856
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json
+[exit 0]
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=3
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: VALID
+verify: installed version updated to 3
+VERDICT: ACCEPT
+REASON: artifact digest, monotonic version, revocation, lengths, and fallback signature valid
+[exit 0]
+SCENARIO R5 rotated-fallback-install-v3 EXPECTED=ACCEPT OBSERVED=ACCEPT REASON=artifact digest, monotonic version, revocation, lengths, and fallback signature valid RESULT=PASS
+R6/R7/R9/R10/R11: separate state file at version=2 to isolate the check under test from the rollback check
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-corrupt.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state-iso.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-corrupt.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=3
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: INVALID
+VERDICT: REJECT
+REASON: fallback signature verification failed
+[exit 1]
+SCENARIO R6 corrupt-slhdsa-signature EXPECTED=REJECT OBSERVED=REJECT REASON=fallback signature verification failed RESULT=PASS
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-wrongkey.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state-iso.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-wrongkey.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=3
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: INVALID
+VERDICT: REJECT
+REASON: fallback signature verification failed
+[exit 1]
+SCENARIO R7 wrong-fallback-public-key EXPECTED=REJECT OBSERVED=REJECT REASON=fallback signature verification failed RESULT=PASS
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json ./pack/../work/recovery-scenarios-run2/firmware-v2.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v2.json artifact=firmware-v2.bin version=2 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-a
+verify: artifact sha256=4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb (manifest 4217a0a5d0e681020c4790e56a0aa88066331e850a98ed64cda204668db14edb) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=3 manifest version=2
+VERDICT: REJECT
+REASON: rollback: manifest version 2 <= installed version 3
+[exit 1]
+SCENARIO R8 replay-recovery-v2-after-v3 EXPECTED=REJECT OBSERVED=REJECT REASON=rollback: manifest version 2 <= installed version 3 RESULT=PASS
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json ./pack/../work/recovery-scenarios-run2/firmware-v3-tampered.bin ./pack/../work/recovery-scenarios-run2/state-iso.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3b.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=0480426f906466ebf05a80e65bea9705cfddc41ae75b38d33248dccfbdf96c6e (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+VERDICT: REJECT
+REASON: artifact digest or size mismatch (tampered payload)
+[exit 1]
+SCENARIO R9 tampered-payload-byteflip EXPECTED=REJECT OBSERVED=REJECT REASON=artifact digest or size mismatch (tampered payload) RESULT=PASS
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-version99.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state-iso.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-version99.json artifact=firmware-v3.bin version=99 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=99
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: INVALID
+VERDICT: REJECT
+REASON: fallback signature verification failed
+[exit 1]
+SCENARIO R10 tampered-version-counter-99 EXPECTED=REJECT OBSERVED=REJECT REASON=fallback signature verification failed RESULT=PASS
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-trunc.json ./pack/../work/recovery-scenarios-run2/firmware-v3.bin ./pack/../work/recovery-scenarios-run2/state-iso.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v3-trunc.json artifact=firmware-v3.bin version=3 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3 (manifest c02970e414a25393df8d3af40e5fae7edbdb2667d22f32a24ee54ca33ffd07a3) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=2 manifest version=3
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7855 (exp 7856)
+VERDICT: REJECT
+REASON: length check failed (FIPS 205): fallback key or signature length does not match scheme
+[exit 1]
+SCENARIO R11 truncated-slhdsa-signature EXPECTED=REJECT OBSERVED=REJECT REASON=length check failed (FIPS 205): fallback key or signature length does not match scheme RESULT=PASS
+$ ./pack/../work/release genkey Ed25519 ed25519-rel-b ./pack/../work/recovery-scenarios-run2/keys
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=Ed25519 key_id=ed25519-rel-b pk_len=32 sk_len=32 pk_sha256=56b9ae2caecdee95...
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/ed25519-rel-b.pk (32 bytes) and ./pack/../work/recovery-scenarios-run2/keys/ed25519-rel-b.sk (32 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/release genkey ML-DSA-65 mldsa65-rel-b ./pack/../work/recovery-scenarios-run2/keys
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+genkey: scheme=ML-DSA-65 key_id=mldsa65-rel-b pk_len=1952 sk_len=4032 pk_sha256=64ad74d0fa44d3cd...
+genkey: wrote ./pack/../work/recovery-scenarios-run2/keys/mldsa65-rel-b.pk (1952 bytes) and ./pack/../work/recovery-scenarios-run2/keys/mldsa65-rel-b.sk (4032 bytes) — runtime keys, not for commit
+[exit 0]
+$ ./pack/../work/release sign ./pack/../work/recovery-scenarios-run2/firmware-v4.bin 4 ed25519-rel-b ./pack/../work/recovery-scenarios-run2/keys ML-DSA-65 mldsa65-rel-b ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v4.json
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v4.bin sha256=b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa size=65536 version=4
+sign: classical Ed25519 key_id=ed25519-rel-b sig_len=64
+sign: pq ML-DSA-65 key_id=mldsa65-rel-b sig_len=3309
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v4.json
+[exit 0]
+$ ./pack/../work/release verify ./pack/../work/recovery-scenarios-run2/manifest-hybrid-v4-corrupt.json ./pack/../work/recovery-scenarios-run2/firmware-v4.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+release: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-hybrid-v4-corrupt.json artifact=firmware-v4.bin version=4 classical=Ed25519 key=ed25519-rel-b pq=ML-DSA-65 key=mldsa65-rel-b
+verify: artifact sha256=b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa (manifest b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=3 manifest version=4
+verify: monotonic version: OK
+verify: revocation check: OK (neither key revoked)
+verify: lengths classical pk=32 (exp 32) sig=64 (exp 64); pq pk=1952 (exp 1952) sig=3309 (exp 3309)
+verify: length checks: OK
+verify: classical Ed25519 signature: VALID
+verify: pq ML-DSA-65 signature: INVALID
+VERDICT: REJECT
+REASON: pq signature verification failed
+[exit 1]
+SCENARIO R12a corrupt-mldsa-signature-hybrid-v4 EXPECTED=REJECT OBSERVED=REJECT REASON=pq signature verification failed RESULT=PASS
+$ ./pack/../work/recovery sign ./pack/../work/recovery-scenarios-run2/firmware-v4.bin 4 SLH-DSA-SHA2-128s slhdsa128s-fb-b ./pack/../work/recovery-scenarios-run2/keys ./pack/../work/recovery-scenarios-run2/manifest-recovery-v4.json
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+sign: artifact=firmware-v4.bin sha256=b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa size=65536 version=4
+sign: fallback SLH-DSA-SHA2-128s key_id=slhdsa128s-fb-b sig_len=7856
+sign: wrote manifest ./pack/../work/recovery-scenarios-run2/manifest-recovery-v4.json
+[exit 0]
+$ ./pack/../work/recovery verify ./pack/../work/recovery-scenarios-run2/manifest-recovery-v4.json ./pack/../work/recovery-scenarios-run2/firmware-v4.bin ./pack/../work/recovery-scenarios-run2/state.txt ./pack/../work/recovery-scenarios-run2/revocation.txt
+recovery: liboqs 0.16.0, OpenSSL OpenSSL 3.0.13 30 Jan 2024
+verify: manifest=./pack/../work/recovery-scenarios-run2/manifest-recovery-v4.json artifact=firmware-v4.bin version=4 fallback=SLH-DSA-SHA2-128s key=slhdsa128s-fb-b
+verify: artifact sha256=b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa (manifest b84a58ec3599d1e97c68e1a7f63a5bca84d6184384b627638f23e3a35287ddaa) size=65536 (manifest 65536)
+verify: artifact digest: OK
+verify: installed version=3 manifest version=4
+verify: monotonic version: OK
+verify: revocation check: OK (fallback key not revoked)
+verify: lengths fallback pk=32 (exp 32) sig=7856 (exp 7856)
+verify: length checks: OK
+verify: fallback SLH-DSA-SHA2-128s signature: VALID
+verify: installed version updated to 4
+VERDICT: ACCEPT
+REASON: artifact digest, monotonic version, revocation, lengths, and fallback signature valid
+[exit 0]
+SCENARIO R12b recovery-install-v4-after-corrupt-primary EXPECTED=ACCEPT OBSERVED=ACCEPT REASON=artifact digest, monotonic version, revocation, lengths, and fallback signature valid RESULT=PASS
+R-M1: hybrid manifest v4 = 7608 bytes; recovery manifest v4 = 10877 bytes; combined dual manifest = 18273 bytes
+MEASUREMENT R-M1 combined-dual-manifest-size VALUE=18273 bytes (hybrid 7608 + recovery 10877) REASON=byte size of one JSON manifest carrying all three signatures
+shipped: run2-firmware-v1.bin
+shipped: run2-firmware-v2.bin
+shipped: run2-firmware-v3.bin
+shipped: run2-firmware-v4.bin
+shipped: run2-manifest-hybrid-v1.json
+shipped: run2-manifest-hybrid-v2.json
+shipped: run2-manifest-hybrid-v4.json
+shipped: run2-manifest-recovery-v2.json
+shipped: run2-manifest-recovery-v3.json
+shipped: run2-manifest-recovery-v4.json
+shipped: run2-revocation-final.txt
+shipped: run2-state-final.txt
+scenarios csv: ./pack/outputs/run2-recovery-scenarios.csv
+run_recovery_scenarios: 14/14 rows PASS (13 verdict scenarios + 1 measurement)
+run_recovery_scenarios: DONE

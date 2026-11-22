@@ -1,0 +1,148 @@
+PASS bench run1 sizes OK (FIPS 204 Table 2 / RFC 8032) fresh
+PASS bench run1 sizes OK (FIPS 204 Table 2 / RFC 8032) shipped
+PASS bench run1 ML-DSA-44 verify failures 0 
+PASS bench run1 ML-DSA-44 keypair min within 25% and mean within 2x shipped mean=58.48 min=31.89 us; fresh mean=69.36 min=33.19 us
+PASS bench run1 ML-DSA-44 sign mean within 25% shipped=115.76 us fresh=130.25 us
+PASS bench run1 ML-DSA-44 verify mean within 25% shipped=38.75 us fresh=42.7 us
+PASS bench run1 ML-DSA-65 verify failures 0 
+PASS bench run1 ML-DSA-65 keypair min within 25% and mean within 2x shipped mean=60.07 min=56.57 us; fresh mean=58.84 min=57.03 us
+PASS bench run1 ML-DSA-65 sign mean within 25% shipped=173.96 us fresh=176.19 us
+PASS bench run1 ML-DSA-65 verify mean within 25% shipped=63.17 us fresh=59.74 us
+PASS bench run1 ML-DSA-87 verify failures 0 
+PASS bench run1 ML-DSA-87 keypair min within 25% and mean within 2x shipped mean=87.53 min=81.03 us; fresh mean=86.45 min=81.1 us
+PASS bench run1 ML-DSA-87 sign mean within 25% shipped=185.57 us fresh=196.38 us
+PASS bench run1 ML-DSA-87 verify mean within 25% shipped=86.86 us fresh=86.42 us
+PASS bench run1 Ed25519 verify failures 0 
+PASS bench run1 Ed25519 keypair min within 25% and mean within 2x shipped mean=56.46 min=53.69 us; fresh mean=57.15 min=55.3 us
+PASS bench run1 Ed25519 sign mean within 25% shipped=55.82 us fresh=55.25 us
+PASS bench run1 Ed25519 verify mean within 25% shipped=143.08 us fresh=147.22 us
+PASS bench run2 sizes OK (FIPS 204 Table 2 / RFC 8032) fresh
+PASS bench run2 sizes OK (FIPS 204 Table 2 / RFC 8032) shipped
+PASS bench run2 ML-DSA-44 verify failures 0 
+PASS bench run2 ML-DSA-44 keypair min within 25% and mean within 2x shipped mean=60.42 min=31.97 us; fresh mean=55.45 min=31.37 us
+PASS bench run2 ML-DSA-44 sign mean within 25% shipped=120.87 us fresh=111.27 us
+PASS bench run2 ML-DSA-44 verify mean within 25% shipped=37.24 us fresh=36.88 us
+PASS bench run2 ML-DSA-65 verify failures 0 
+PASS bench run2 ML-DSA-65 keypair min within 25% and mean within 2x shipped mean=62.48 min=56.55 us; fresh mean=59.78 min=56.99 us
+PASS bench run2 ML-DSA-65 sign mean within 25% shipped=194.76 us fresh=174.97 us
+PASS bench run2 ML-DSA-65 verify mean within 25% shipped=64.03 us fresh=58.97 us
+PASS bench run2 ML-DSA-87 verify failures 0 
+PASS bench run2 ML-DSA-87 keypair min within 25% and mean within 2x shipped mean=89.09 min=80.64 us; fresh mean=85.67 min=81.28 us
+PASS bench run2 ML-DSA-87 sign mean within 25% shipped=183.58 us fresh=177.47 us
+PASS bench run2 ML-DSA-87 verify mean within 25% shipped=89.67 us fresh=85.77 us
+PASS bench run2 Ed25519 verify failures 0 
+PASS bench run2 Ed25519 keypair min within 25% and mean within 2x shipped mean=59.44 min=53.79 us; fresh mean=57.67 min=55.13 us
+PASS bench run2 Ed25519 sign mean within 25% shipped=56.94 us fresh=55.9 us
+PASS bench run2 Ed25519 verify mean within 25% shipped=149.58 us fresh=145.9 us
+PASS slhdsa run1 sizes OK (FIPS 205 Table 2, 12 sets) fresh
+PASS slhdsa run1 sizes OK (FIPS 205 Table 2, 12 sets) shipped
+PASS slhdsa run1 SLH-DSA-SHA2-128s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-128s keypair min within 25% and mean within 2x shipped mean=97714.06 min=93856.74 us; fresh mean=98555.94 min=93928.0 us
+PASS slhdsa run1 SLH-DSA-SHA2-128s sign mean within 2x shipped=758316.58 us fresh=754687.07 us
+PASS slhdsa run1 SLH-DSA-SHA2-128s verify mean within 2x shipped=764.17 us fresh=749.68 us
+PASS slhdsa run1 SLH-DSA-SHA2-128f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-128f keypair min within 25% and mean within 2x shipped mean=1523.82 min=1463.51 us; fresh mean=1550.59 min=1467.38 us
+PASS slhdsa run1 SLH-DSA-SHA2-128f sign mean within 2x shipped=35536.02 us fresh=35504.96 us
+PASS slhdsa run1 SLH-DSA-SHA2-128f verify mean within 2x shipped=2151.88 us fresh=2147.33 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-128s keypair min within 25% and mean within 2x shipped mean=149777.15 min=145047.34 us; fresh mean=153248.6 min=146334.36 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128s sign mean within 2x shipped=1143836.39 us fresh=1170483.81 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128s verify mean within 2x shipped=1128.4 us fresh=1165.05 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-128f keypair min within 25% and mean within 2x shipped mean=2371.3 min=2264.51 us; fresh mean=2458.98 min=2271.85 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128f sign mean within 2x shipped=54630.53 us fresh=56677.84 us
+PASS slhdsa run1 SLH-DSA-SHAKE-128f verify mean within 2x shipped=3275.07 us fresh=3429.44 us
+PASS slhdsa run1 SLH-DSA-SHA2-192s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-192s keypair min within 25% and mean within 2x shipped mean=139436.9 min=138205.1 us; fresh mean=138933.2 min=137912.9 us
+PASS slhdsa run1 SLH-DSA-SHA2-192s sign mean within 2x shipped=1321632.89 us fresh=1295487.77 us
+PASS slhdsa run1 SLH-DSA-SHA2-192s verify mean within 2x shipped=1119.49 us fresh=1048.24 us
+PASS slhdsa run1 SLH-DSA-SHA2-192f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-192f keypair min within 25% and mean within 2x shipped mean=2247.11 min=2166.4 us; fresh mean=2396.15 min=2165.08 us
+PASS slhdsa run1 SLH-DSA-SHA2-192f sign mean within 2x shipped=59422.71 us fresh=73719.71 us
+PASS slhdsa run1 SLH-DSA-SHA2-192f verify mean within 2x shipped=3100.92 us fresh=3796.39 us
+PASS slhdsa run1 SLH-DSA-SHA2-256s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-256s keypair min within 25% and mean within 2x shipped mean=92170.4 min=91279.93 us; fresh mean=92512.47 min=90079.06 us
+PASS slhdsa run1 SLH-DSA-SHA2-256s sign mean within 2x shipped=1150137.1 us fresh=1159618.33 us
+PASS slhdsa run1 SLH-DSA-SHA2-256s verify mean within 2x shipped=1572.21 us fresh=1571.48 us
+PASS slhdsa run1 SLH-DSA-SHA2-256f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHA2-256f keypair min within 25% and mean within 2x shipped mean=5859.99 min=5614.47 us; fresh mean=6273.69 min=5649.64 us
+PASS slhdsa run1 SLH-DSA-SHA2-256f sign mean within 2x shipped=118764.31 us fresh=117852.22 us
+PASS slhdsa run1 SLH-DSA-SHA2-256f verify mean within 2x shipped=3242.27 us fresh=3082.29 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-192s keypair min within 25% and mean within 2x shipped mean=215624.29 min=214955.8 us; fresh mean=221451.56 min=217637.43 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192s sign mean within 2x shipped=2019402.78 us fresh=2049513.03 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192s verify mean within 2x shipped=1641.35 us fresh=1700.23 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-192f keypair min within 25% and mean within 2x shipped mean=3446.43 min=3363.84 us; fresh mean=3414.16 min=3365.63 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192f sign mean within 2x shipped=91700.54 us fresh=90721.91 us
+PASS slhdsa run1 SLH-DSA-SHAKE-192f verify mean within 2x shipped=4775.33 us fresh=4664.79 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256s verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-256s keypair min within 25% and mean within 2x shipped mean=143747.81 min=140856.4 us; fresh mean=145498.43 min=143626.79 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256s sign mean within 2x shipped=1787552.06 us fresh=1831691.32 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256s verify mean within 2x shipped=2708.11 us fresh=2384.85 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256f verify failures 0 
+PASS slhdsa run1 SLH-DSA-SHAKE-256f keypair min within 25% and mean within 2x shipped mean=9525.99 min=8803.39 us; fresh mean=9136.21 min=8862.27 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256f sign mean within 2x shipped=193176.94 us fresh=188051.24 us
+PASS slhdsa run1 SLH-DSA-SHAKE-256f verify mean within 2x shipped=4834.59 us fresh=4880.63 us
+PASS slhdsa run2 sizes OK (FIPS 205 Table 2, 12 sets) fresh
+PASS slhdsa run2 sizes OK (FIPS 205 Table 2, 12 sets) shipped
+PASS slhdsa run2 SLH-DSA-SHA2-128s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-128s keypair min within 25% and mean within 2x shipped mean=95579.61 min=93847.07 us; fresh mean=98846.83 min=93455.5 us
+PASS slhdsa run2 SLH-DSA-SHA2-128s sign mean within 2x shipped=731570.73 us fresh=742432.95 us
+PASS slhdsa run2 SLH-DSA-SHA2-128s verify mean within 2x shipped=729.83 us fresh=758.4 us
+PASS slhdsa run2 SLH-DSA-SHA2-128f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-128f keypair min within 25% and mean within 2x shipped mean=1550.21 min=1465.26 us; fresh mean=1507.66 min=1447.89 us
+PASS slhdsa run2 SLH-DSA-SHA2-128f sign mean within 2x shipped=35910.4 us fresh=35111.03 us
+PASS slhdsa run2 SLH-DSA-SHA2-128f verify mean within 2x shipped=2150.94 us fresh=2149.2 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-128s keypair min within 25% and mean within 2x shipped mean=151435.49 min=146189.59 us; fresh mean=151007.62 min=143386.61 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128s sign mean within 2x shipped=1168848.18 us fresh=1158330.07 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128s verify mean within 2x shipped=1155.48 us fresh=1113.38 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-128f keypair min within 25% and mean within 2x shipped mean=2501.0 min=2285.9 us; fresh mean=2398.81 min=2224.05 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128f sign mean within 2x shipped=56341.69 us fresh=58383.57 us
+PASS slhdsa run2 SLH-DSA-SHAKE-128f verify mean within 2x shipped=3360.21 us fresh=3377.99 us
+PASS slhdsa run2 SLH-DSA-SHA2-192s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-192s keypair min within 25% and mean within 2x shipped mean=140109.09 min=138224.58 us; fresh mean=139564.96 min=137608.35 us
+PASS slhdsa run2 SLH-DSA-SHA2-192s sign mean within 2x shipped=1309516.33 us fresh=1294312.64 us
+PASS slhdsa run2 SLH-DSA-SHA2-192s verify mean within 2x shipped=1121.94 us fresh=1097.93 us
+PASS slhdsa run2 SLH-DSA-SHA2-192f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-192f keypair min within 25% and mean within 2x shipped mean=2234.3 min=2162.15 us; fresh mean=2147.64 min=2119.94 us
+PASS slhdsa run2 SLH-DSA-SHA2-192f sign mean within 2x shipped=57208.76 us fresh=56260.44 us
+PASS slhdsa run2 SLH-DSA-SHA2-192f verify mean within 2x shipped=3083.89 us fresh=3057.22 us
+PASS slhdsa run2 SLH-DSA-SHA2-256s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-256s keypair min within 25% and mean within 2x shipped mean=97291.5 min=91325.85 us; fresh mean=90909.24 min=89748.92 us
+PASS slhdsa run2 SLH-DSA-SHA2-256s sign mean within 2x shipped=1176469.31 us fresh=1141122.7 us
+PASS slhdsa run2 SLH-DSA-SHA2-256s verify mean within 2x shipped=1615.35 us fresh=1551.29 us
+PASS slhdsa run2 SLH-DSA-SHA2-256f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHA2-256f keypair min within 25% and mean within 2x shipped mean=5733.19 min=5651.04 us; fresh mean=5613.65 min=5575.27 us
+PASS slhdsa run2 SLH-DSA-SHA2-256f sign mean within 2x shipped=118205.55 us fresh=116247.52 us
+PASS slhdsa run2 SLH-DSA-SHA2-256f verify mean within 2x shipped=3097.75 us fresh=3112.44 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-192s keypair min within 25% and mean within 2x shipped mean=219762.39 min=215783.69 us; fresh mean=225363.83 min=212911.2 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192s sign mean within 2x shipped=2028622.37 us fresh=2124031.9 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192s verify mean within 2x shipped=1619.02 us fresh=1651.56 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-192f keypair min within 25% and mean within 2x shipped mean=3423.99 min=3346.58 us; fresh mean=3368.95 min=3313.76 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192f sign mean within 2x shipped=88893.79 us fresh=93423.32 us
+PASS slhdsa run2 SLH-DSA-SHAKE-192f verify mean within 2x shipped=4709.0 us fresh=4836.65 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256s verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-256s keypair min within 25% and mean within 2x shipped mean=146745.03 min=140922.9 us; fresh mean=165086.64 min=143556.53 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256s sign mean within 2x shipped=1801141.97 us fresh=1877869.36 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256s verify mean within 2x shipped=2347.91 us fresh=2598.81 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256f verify failures 0 
+PASS slhdsa run2 SLH-DSA-SHAKE-256f keypair min within 25% and mean within 2x shipped mean=9024.87 min=8851.12 us; fresh mean=9660.72 min=8638.19 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256f sign mean within 2x shipped=184298.05 us fresh=214597.13 us
+PASS slhdsa run2 SLH-DSA-SHAKE-256f verify mean within 2x shipped=4843.05 us fresh=5146.44 us
+PASS recovery scenarios run1 shipped 13/13 verdicts PASS + 1 measurement 13/13 verdicts, 1 measurement
+PASS recovery scenarios run1 fresh 13/13 verdicts PASS + 1 measurement 13/13 verdicts, 1 measurement
+PASS recovery scenarios run1 R-M1 combined-manifest size identical shipped=18273 bytes (hybrid 7608 + recovery 10877) fresh=18273 bytes (hybrid 7608 + recovery 10877)
+PASS recovery scenarios run1 shipped expected==observed for all verdicts mismatches: []
+PASS recovery scenarios run1 fresh expected==observed for all verdicts mismatches: []
+PASS recovery scenarios run2 shipped 13/13 verdicts PASS + 1 measurement 13/13 verdicts, 1 measurement
+PASS recovery scenarios run2 fresh 13/13 verdicts PASS + 1 measurement 13/13 verdicts, 1 measurement
+PASS recovery scenarios run2 R-M1 combined-manifest size identical shipped=18273 bytes (hybrid 7608 + recovery 10877) fresh=18273 bytes (hybrid 7608 + recovery 10877)
+PASS recovery scenarios run2 shipped expected==observed for all verdicts mismatches: []
+PASS recovery scenarios run2 fresh expected==observed for all verdicts mismatches: []
+
+COMPARISON: ALL CHECKS PASSED
