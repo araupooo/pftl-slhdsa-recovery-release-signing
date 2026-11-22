@@ -1,0 +1,32 @@
+# verify.yml — build the pinned stack and run the full measurement suite.
+# Runs on every push and pull request. Mirrors the documented entry point:
+#   bash scripts/build_all.sh && bash scripts/run_all.sh && bash scripts/verify_digests.sh
+# Runtime is ~15-20 minutes (liboqs build + SLH-DSA bench, where 128s
+# signing costs roughly half a second per signature).
+name: verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake gcc python3 libssl-dev
+          cmake --version; gcc --version | head -1; python3 --version; openssl version
+      - name: Build pinned stack + harness binaries
+        run: bash scripts/build_all.sh
+      - name: Run full measurement suite
+        run: bash scripts/run_all.sh
+      - name: Verify digests
+        run: bash scripts/verify_digests.sh
+      - name: Check scenario results
+        run: |
+          grep -c 'RESULT=PASS' outputs/recovery-scenarios-run1.log
+          grep -c 'RESULT=PASS' outputs/recovery-scenarios-run2.log
+          test "$(grep -c 'RESULT=FAIL' outputs/recovery-scenarios-run1.log outputs/recovery-scenarios-run2.log | awk -F: '{s+=$2} END {print s}')" = "0"
