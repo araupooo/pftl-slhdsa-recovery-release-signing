@@ -1,0 +1,3 @@
+# revocation list: one key id per line
+mldsa65-rel-a
+slhdsa128s-fb-a

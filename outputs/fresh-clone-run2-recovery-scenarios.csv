@@ -1,0 +1,15 @@
+scenario,name,expected,observed,reason,result
+R1,clean-hybrid-install-v1,ACCEPT,ACCEPT,"artifact digest, monotonic version, revocation, lengths, and both signatures valid",PASS
+R2,revoked-mldsa-key-hybrid-v2,REJECT,REJECT,compromised key: pq key mldsa65-rel-a is revoked,PASS
+R3,recovery-install-v2-fallback-a,ACCEPT,ACCEPT,"artifact digest, monotonic version, revocation, lengths, and fallback signature valid",PASS
+R4,revoked-fallback-key-v3,REJECT,REJECT,compromised key: fallback key slhdsa128s-fb-a is revoked,PASS
+R5,rotated-fallback-install-v3,ACCEPT,ACCEPT,"artifact digest, monotonic version, revocation, lengths, and fallback signature valid",PASS
+R6,corrupt-slhdsa-signature,REJECT,REJECT,fallback signature verification failed,PASS
+R7,wrong-fallback-public-key,REJECT,REJECT,fallback signature verification failed,PASS
+R8,replay-recovery-v2-after-v3,REJECT,REJECT,rollback: manifest version 2 <= installed version 3,PASS
+R9,tampered-payload-byteflip,REJECT,REJECT,artifact digest or size mismatch (tampered payload),PASS
+R10,tampered-version-counter-99,REJECT,REJECT,fallback signature verification failed,PASS
+R11,truncated-slhdsa-signature,REJECT,REJECT,length check failed (FIPS 205): fallback key or signature length does not match scheme,PASS
+R12a,corrupt-mldsa-signature-hybrid-v4,REJECT,REJECT,pq signature verification failed,PASS
+R12b,recovery-install-v4-after-corrupt-primary,ACCEPT,ACCEPT,"artifact digest, monotonic version, revocation, lengths, and fallback signature valid",PASS
+R-M1,combined-dual-manifest-size,MEASURED,18273 bytes (hybrid 7608 + recovery 10877),byte size of one JSON manifest carrying all three signatures,PASS
