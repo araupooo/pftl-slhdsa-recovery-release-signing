@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SLH-DSA Recovery Extension for Release Signing — Results</title>
+<style>
+body { font-family: sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; color: #111; }
+h1 { font-size: 1.4em; } h2 { font-size: 1.15em; margin-top: 1.8em; }
+table { border-collapse: collapse; margin: 0.8em 0; }
+th, td { border: 1px solid #999; padding: 4px 8px; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+p, li { line-height: 1.45; }
+code { background: #f0f0f0; padding: 0 3px; }
+.pass { color: #0a0; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>SLH-DSA Recovery Extension for Release Signing — Results</h1>
+<p>All numbers below are copied from the unedited logs in
+<code>outputs/</code> (two runs, run1 and run2, each with fresh keys).
+Two-run mean averages unless noted. Sizes are exact matches to the
+standards in every run (0 mismatches). Full claim-to-evidence map:
+<code>docs/claim-evidence-index.md</code>. Recommendation:
+<code>docs/decision-memo.md</code>.</p>
+
+<h2>SLH-DSA timing (liboqs 0.16.0, fixed 64-byte message)</h2>
+<p>N=100 for the 128s/128f sets; N=5 for the 192/256 sets (signing there
+costs seconds per signature). SLH-DSA-SHA2-128s signing median:
+744,988.93 µs (run1) / 726,959.64 µs (run2).</p>
+<table>
+<tr><th>Scheme</th><th>pk (B)</th><th>sig (B)</th><th>keypair mean (µs)</th><th>sign mean (µs)</th><th>verify mean (µs)</th></tr>
+<tr><td>SLH-DSA-SHA2-128s</td><td>32</td><td>7,856</td><td>96,646.83</td><td>744,943.66</td><td>747.00</td></tr>
+<tr><td>SLH-DSA-SHA2-128f</td><td>32</td><td>17,088</td><td>1,537.01</td><td>35,723.21</td><td>2,151.41</td></tr>
+<tr><td>SLH-DSA-SHA2-192s</td><td>48</td><td>16,224</td><td>139,772.99</td><td>1,315,574.61</td><td>1,120.72</td></tr>
+<tr><td>SLH-DSA-SHA2-192f</td><td>48</td><td>35,664</td><td>2,240.70</td><td>58,315.74</td><td>3,092.40</td></tr>
+<tr><td>SLH-DSA-SHA2-256s</td><td>64</td><td>29,792</td><td>94,730.95</td><td>1,163,303.21</td><td>1,593.78</td></tr>
+<tr><td>SLH-DSA-SHA2-256f</td><td>64</td><td>49,856</td><td>5,796.59</td><td>118,484.93</td><td>3,170.01</td></tr>
+<tr><td>SLH-DSA-SHAKE-128s</td><td>32</td><td>7,856</td><td>150,606.32</td><td>1,156,342.28</td><td>1,141.94</td></tr>
+<tr><td>SLH-DSA-SHAKE-128f</td><td>32</td><td>17,088</td><td>2,436.15</td><td>55,486.11</td><td>3,317.64</td></tr>
+<tr><td>SLH-DSA-SHAKE-192s</td><td>48</td><td>16,224</td><td>217,693.34</td><td>2,024,012.58</td><td>1,630.18</td></tr>
+<tr><td>SLH-DSA-SHAKE-192f</td><td>48</td><td>35,664</td><td>3,435.21</td><td>90,297.16</td><td>4,742.16</td></tr>
+<tr><td>SLH-DSA-SHAKE-256s</td><td>64</td><td>29,792</td><td>145,246.42</td><td>1,794,347.02</td><td>2,528.01</td></tr>
+<tr><td>SLH-DSA-SHAKE-256f</td><td>64</td><td>49,856</td><td>9,275.43</td><td>188,737.49</td><td>4,838.82</td></tr>
+</table>
+<p>Sources: <code>outputs/bench-slhdsa-run1.log</code>,
+<code>outputs/bench-slhdsa-run2.log</code> (sizes vs FIPS 205 Table 2).</p>
+
+<h2>Primary-path baseline, re-measured in this pack (N=100)</h2>
+<table>
+<tr><th>Scheme</th><th>pk (B)</th><th>sig (B)</th><th>sign mean (µs)</th><th>verify mean (µs)</th></tr>
+<tr><td>Ed25519</td><td>32</td><td>64</td><td>56.38</td><td>146.33</td></tr>
+<tr><td>ML-DSA-44</td><td>1,312</td><td>2,420</td><td>118.31</td><td>38.00</td></tr>
+<tr><td>ML-DSA-65</td><td>1,952</td><td>3,309</td><td>184.36</td><td>63.60</td></tr>
+<tr><td>ML-DSA-87</td><td>2,592</td><td>4,627</td><td>184.57</td><td>88.27</td></tr>
+</table>
+<p>Hybrid (Ed25519 + ML-DSA-65): signing ~240.74 µs, verification
+~209.93 µs; combined signature payload 3,373 bytes. Sources:
+<code>outputs/bench-sig-run1.log</code>,
+<code>outputs/bench-sig-run2.log</code> (sizes vs FIPS 204 Table 2 /
+RFC 8032).</p>
+
+<h2>Manifest sizes (measured, run1 = run2)</h2>
+<table>
+<tr><th>Manifest</th><th>Bytes</th></tr>
+<tr><td>Hybrid (Ed25519 + ML-DSA-65)</td><td>7,608</td></tr>
+<tr><td>Recovery (SLH-DSA-SHA2-128s)</td><td>10,877</td></tr>
+<tr><td>Combined dual (all three signatures)</td><td>18,273</td></tr>
+</table>
+<p>Signature bytes alone: hybrid 3,373 (64 + 3,309); dual 11,229
+(64 + 3,309 + 7,856). Source: measurement R-M1 in
+<code>outputs/run1-recovery-scenarios.csv</code>; files
+<code>outputs/run1-manifest-hybrid-v4.json</code>,
+<code>outputs/run1-manifest-recovery-v4.json</code>,
+<code>outputs/run1-dual-manifest-v4.json</code>.</p>
+
+<h2>Recovery scenarios (13 verdicts + 1 measurement, both runs)</h2>
+<table>
+<tr><th>ID</th><th>Scenario</th><th>Expected</th><th>Observed</th><th>Result</th></tr>
+<tr><td>R1</td><td>clean hybrid install v1</td><td>ACCEPT</td><td>ACCEPT</td><td class="pass">PASS</td></tr>
+<tr><td>R2</td><td>revoked ML-DSA key, hybrid v2</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R3</td><td>recovery install v2 (fallback A)</td><td>ACCEPT</td><td>ACCEPT</td><td class="pass">PASS</td></tr>
+<tr><td>R4</td><td>revoked fallback key, v3</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R5</td><td>rotated fallback install v3</td><td>ACCEPT</td><td>ACCEPT</td><td class="pass">PASS</td></tr>
+<tr><td>R6</td><td>corrupt SLH-DSA signature</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R7</td><td>wrong fallback public key</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R8</td><td>replay recovery v2 after v3</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R9</td><td>tampered payload byteflip</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R10</td><td>tampered version counter 99</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R11</td><td>truncated SLH-DSA signature</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R12a</td><td>corrupt ML-DSA signature, hybrid v4</td><td>REJECT</td><td>REJECT</td><td class="pass">PASS</td></tr>
+<tr><td>R12b</td><td>recovery install v4 after corrupt primary</td><td>ACCEPT</td><td>ACCEPT</td><td class="pass">PASS</td></tr>
+<tr><td>R-M1</td><td>combined dual-manifest size</td><td>MEASURED</td><td>18,273 bytes</td><td class="pass">PASS</td></tr>
+</table>
+<p>Sources: <code>outputs/run1-recovery-scenarios.csv</code>,
+<code>outputs/run2-recovery-scenarios.csv</code>,
+<code>outputs/recovery-scenarios-run1.log</code>,
+<code>outputs/recovery-scenarios-run2.log</code>. The ML-DSA
+"compromise" in R2 is emulated by revocation — no key material was
+leaked; see <code>docs/methodology.md</code> D6.</p>
+
+<h2>Reproduction</h2>
+<p><code>bash scripts/clean_reproduce.sh</code> rebuilds everything
+from the fixtures and re-runs the full suite; the comparison is
+<code>outputs/fresh-clone-compare.txt</code>:
+<code>COMPARISON: ALL CHECKS PASSED</code> (146 PASS lines, 0 FAIL).</p>
+</body>
+</html>
